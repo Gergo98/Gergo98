@@ -1,0 +1,22 @@
+import matplotlib.image as img
+import matplotlib.pyplot as plt
+import random
+list=[]
+kep = img.imread('flowers.jpg')
+szelesseg,magassag=kep.shape[0]+1,kep.shape[1]+1
+kezdm,kezdsz=0,0
+x,y=3,3
+fig = plt.figure(figsize=(9, 9))
+for i in range(int(szelesseg/(y)),szelesseg,int(szelesseg/(y))):
+    vagott = kep[kezdsz:i, kezdm:magassag]
+    for j in range(int(magassag / (x)), magassag, int(magassag / (x))):
+        list.append(vagott[0:vagott.shape[0],kezdm:j])
+        kezdm=j
+    kezdm=0
+    kezdsz=i
+a=random.sample(range((xy)),(xy))
+print(a)
+for i in range(len(list)):
+    fig.add_subplot(x, y, i+1)
+    plt.imshow(list[a[i]])
+plt.show()
