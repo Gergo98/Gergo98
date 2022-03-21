@@ -1,0 +1,59 @@
+import numpy as np
+import math
+
+def lnko(a,b):
+    while b > 0:
+        a, b = b, a % b
+    return a
+def lkkt(x, y):
+    if(x==0):
+        return x
+    if(y==0):
+        return y
+    if x > y:
+        nagyobb = x
+    else:
+        nagyobb = y
+    while(True):
+        if((nagyobb % x == 0) and (nagyobb % y == 0)):
+            lkkt = nagyobb
+            break
+        nagyobb += 1
+
+    return lkkt
+
+try:
+    n = int(input("Írja be egy vektor hosszúságát! "))
+    vektor = np.random.randint(0, 50, n)
+    matrix = np.zeros((n,n), dtype=int)
+    i = 0
+    j = 0
+    for k in range(len(vektor)):
+        matrix[i, j] = vektor[k]
+        i += 1
+        j += 1
+
+    felsoharom = []
+    for e in range(n):
+        for k in range(e):
+            felsoharom.append(lnko(vektor[e], vektor[k]))
+    # print(felsoharom)
+    z = 0
+    for l in range(n):
+        for m in range(l):
+            matrix[m,l] = felsoharom[z]
+            z += 1
+    alsoharom = []
+    for e in range(n):
+        for k in range(e):
+            alsoharom.append(lkkt(vektor[e],vektor[k]))
+    # print(alsoharom)
+    x = 0
+    for l in range(n):
+        for m in range(l):
+            matrix[l, m] = alsoharom[x]
+            x += 1
+    print(vektor)
+    print(matrix)
+except ValueError:
+    print("Nem számot adott meg.")
